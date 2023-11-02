@@ -108,37 +108,30 @@ exports.handler = async (event, context) => {
     const data = JSON.parse(event.body);
 
     if (!(data.email && data.password)) {
-      return { statusCode: 400, headers, body: "All input is required" };
+      return { statusCode: 400, headers, body: "Both email and password are required" };
     }
 
-    // Configura la conexión a MongoDB
     const uri = "mongodb+srv://admin:admin@cluster0.6l3gxpe.mongodb.net/?retryWrites=true&w=majority";
     const client = new MongoClient(uri);
 
     try {
       await client.connect();
-      const user = await client.db("tarea").collection("usuarios").findOne({ email: data.email });
+      const userCollection = client.db("tarea").collection("usuarios");
+      const user = await userCollection.findOne({ email: data.email });
 
-      if (user) {
-        // Verifica la contraseña con bcrypt
-        const passwordMatch = await bcrypt.compare(data.password, user.password);
-        if (passwordMatch) {
-          // Genera un token JWT y lo incluye en la respuesta
-          const token = jwt.sign(
-            { user_id: user._id, email: data.email },
-            process.env.TOKEN_KEY,
-            {
-              expiresIn: "2h",
-            }
-          );
-          return { statusCode: 200, headers, body: JSON.stringify({ token }) };
-        }
+      if (user && (await bcrypt.compare(data.password, user.password))) {
+        const token = jwt.sign(
+          { user_id: user._id, email: data.email },
+          process.env.TOKEN_KEY,
+          {
+            expiresIn: "2h",
+          }
+        );
+        return { statusCode: 200, headers, body: JSON.stringify({ token }) };
+      } else {
+        return { statusCode: 401, headers, body: "Invalid email or password" };
       }
-
-      // Mensaje de error más específico
-      return { statusCode: 400, headers, body: "Invalid email or password" };
     } finally {
-      // Cierra la conexión con MongoDB
       await client.close();
     }
   } catch (error) {
