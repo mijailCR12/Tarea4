@@ -78,7 +78,9 @@ exports.handler = async (event, context) => {
         );
         return { statusCode: 200, headers, body: JSON.stringify(user)};
       } else {
-        return { statusCode: 400, headers, body: 'Invalid Credentials', body2: JSON.stringify(user) };
+        // return { statusCode: 400, headers, body: 'Invalid Credentials', body2: JSON.stringify(user) };
+        
+        return { statusCode: 400, headers, body: JSON.stringify(user) };
       }
     } finally {
       // Cierra la conexión con MongoDB
