@@ -119,7 +119,8 @@ exports.handler = async (event, context) => {
       const userCollection = client.db("tarea").collection("usuarios");
       const user = await userCollection.findOne({ email: data.email });
 
-      if (user && (await bcrypt.compare(data.password, user.password))) {
+      let passwd = await bcrypt.hash(user.password, 10);
+      if (user && (await bcrypt.compare(data.password, passwd))) {
         const token = jwt.sign(
           { user_id: user._id, email: data.email },
           process.env.TOKEN_KEY,
