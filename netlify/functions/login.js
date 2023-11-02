@@ -61,7 +61,7 @@ exports.handler = async (event, context) => {
     }
 
     // Configura la conexión a MongoDB
-    const uri = "mongodb://usuario:contraseña@host:puerto/base_de_datos";
+    const uri = "mongodb+srv://admin:admin@cluster0.6l3gxpe.mongodb.net/?retryWrites=true&w=majority";
     const client = new MongoClient(uri, { useNewUrlParser: true });
 
     try {
