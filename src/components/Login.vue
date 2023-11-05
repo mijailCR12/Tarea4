@@ -4,11 +4,13 @@
     <form @submit.prevent="login">
       <div class="form-group">
         <label for="email">Correo electrónico:</label>
-        <input  id="email" v-model="email" required>
+        <input id="email" v-model="email" required>
+        <span>{{ 'my_login'}}</span> <!-- Muestra el email aquí -->
       </div>
       <div class="form-group">
         <label for="password">Contraseña:</label>
         <input type="password" id="password" v-model="password" required>
+        <span>{{ '12345' }}</span> <!-- Muestra la contraseña aquí -->
       </div>
       <button type="submit">Iniciar sesión</button>
     </form>
@@ -37,6 +39,7 @@ export default {
 
       if (response.ok) {
         const data = await response.json();
+        document.cookie = `token=${data.token};path=/`;
         if (data.token) {
           // Redirige al usuario a la página "Home" después de iniciar sesión exitosamente
           this.$router.push("/home");
@@ -78,14 +81,16 @@ input {
   border-radius: 3px;
 }
 
+
+
 button {
   display: block;
   width: 100%;
-  padding: 10px;
   background-color: #007bff;
   color: #fff;
   border: none;
   border-radius: 3px;
   cursor: pointer;
+  text-align: center; /* Asegura que el texto esté centrado */
 }
 </style>

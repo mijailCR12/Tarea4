@@ -13,7 +13,7 @@
  <router-view />
   <div class="row">
     <button disabled="disabled" class="twelve columns button-primary">
-      Copyright (c) 2020 - Armando Arce-Orozco
+      Copyright (c) 2023 - Tarea 4
     </button>
   </div>
 </div>
