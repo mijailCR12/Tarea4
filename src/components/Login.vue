@@ -40,7 +40,7 @@ export default {
       if (response.ok) {
         const data = await response.json();
         document.cookie = `token=${data.token};path=/`;
-        if (data.token) {
+        if (document.cookie) {
           // Redirige al usuario a la página "Home" después de iniciar sesión exitosamente
           this.$router.push("/home");
         } else {
