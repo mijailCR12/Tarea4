@@ -4,6 +4,8 @@ import router from "./router";
 
 import './assets/css/normalize.css';
 import './assets/css/skeleton.css';
+import '@fortawesome/fontawesome-free/css/all.css';
+
 
 const app = createApp(App);
   

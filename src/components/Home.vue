@@ -1,12 +1,11 @@
 <!-- Home.vue -->
 <template>
   <div>
-    <h2 style="margin-top: 15px">Bookstore Example Site</h2>
-      <p>This website offers information on books, authors and publishers.</p>
+    <h2 style="margin-top: 15px">Control - Souvenir</h2>
+      <p>Sistema de control de inventario.</p>
     <ul>
-      <li><router-link to='/book'>Books information</router-link></li>
-      <li><router-link to='/author'>Authors information</router-link></li>
-      <li><router-link to='/publisher'>Publishers information</router-link></li>
+      <li><router-link to='/provedor'>Proveedores</router-link></li>
+      <li><router-link to='/categoria'>Categorias de productos</router-link></li>
       <li><router-link to='/producto'>Productos</router-link></li>
     </ul>
     <!-- Botón de Logout -->
