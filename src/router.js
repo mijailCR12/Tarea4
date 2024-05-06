@@ -10,6 +10,9 @@ import AuthorDetails from "./components/AuthorDetails.vue";
 import PublisherIndex from "./components/PublisherIndex.vue";
 import PublisherDetails from "./components/PublisherDetails.vue";
 
+import ProductoIndex from "./components/ProductoIndex.vue";
+import ProductoDetails from "./components/ProductoDetails.vue";
+
 const routes = [
   { path: "/", component: Login },
   { path: "/home", component: Home, meta: {requiresAuth: true} },
@@ -44,6 +47,17 @@ const routes = [
     component: PublisherDetails, props: {create:true}, meta: {requiresAuth: true} },
   { path: "/publisher/delete/:id", 
     component: PublisherDetails, props: {delete:true}, meta: {requiresAuth: true} },
+
+  // productos
+    { path: "/producto", component: ProductoIndex, meta: {requiresAuth: true} },
+    { path: "/producto/show/:id", 
+      component: ProductoDetails, props: {show:true}, meta: {requiresAuth: true} },
+    { path: "/producto/edit/:id", 
+      component: ProductoDetails, props: {edit:true}, meta: {requiresAuth: true} },
+    { path: "/producto/create", 
+      component: ProductoDetails, props: {create:true}, meta: {requiresAuth: true} },
+    { path: "/producto/delete/:id", 
+      component: ProductoDetails, props: {delete:true}, meta: {requiresAuth: true} },
 ];
 
 const history = createWebHistory();

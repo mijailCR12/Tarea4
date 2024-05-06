@@ -7,6 +7,7 @@
       <li><router-link to='/book'>Books information</router-link></li>
       <li><router-link to='/author'>Authors information</router-link></li>
       <li><router-link to='/publisher'>Publishers information</router-link></li>
+      <li><router-link to='/producto'>Productos</router-link></li>
     </ul>
     <!-- Botón de Logout -->
     <button @click="logout">Logout</button>
